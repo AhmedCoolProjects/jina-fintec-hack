@@ -16,7 +16,6 @@ export function Header() {
             <h1 className="text-xl sm:text-2xl font-bold">SCORE LAB</h1>
           </div>
         </Link>
-        <div className="flex flex-row items-center space-x-2"></div>
       </Paper>
     </>
   );
