@@ -10,10 +10,12 @@ export function Header() {
       <Paper className="w-full z-10 p-3 sticky top-0 items-center justify-between flex flex-row">
         <Link href="/" passHref>
           <div className="flex cursor-pointer flex-row items-center space-x-2">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 relative">
-              <Image src={IMAGES.finLogo} alt="logo" layout="fill" />
-            </div>
-            <h1 className="text-xl sm:text-2xl font-bold">SCORE LAB</h1>
+            <Image
+              src={IMAGES.finLogo}
+              alt="logo"
+              height={60}
+              objectFit="contain"
+            />
           </div>
         </Link>
       </Paper>
