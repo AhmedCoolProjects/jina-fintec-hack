@@ -1,3 +1,5 @@
+// @ts-ignore
+// @ts-nocheck
 import { Button, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -164,7 +166,7 @@ const HomeResult: NextPage = () => {
       </Head>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={6}>
-          <div className="w-full sm:max-h-screen sm:overflow-y-scroll ">
+          <div className="w-full sm:max-h-screen sm:overflow-x-hidden sm:overflow-y-scroll ">
             {/* ratio */}
             <h1 className="font-semibold text-blue-700 text-3xl my-3 text-center">
               Statistiques
