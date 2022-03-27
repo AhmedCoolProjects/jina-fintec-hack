@@ -10,6 +10,7 @@ import {
   SecteurActivitePart,
   StatusSelectPart,
 } from "../src/components";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -40,13 +41,15 @@ const Home: NextPage = () => {
             Secteurs d&apos;activité
           </h1>
           <SecteurActivitePart />
-          <Button
-            variant="outlined"
-            size="large"
-            color="primary"
-            className="w-full py-3 my-3">
-            Analyse & Score
-          </Button>
+          <Link href="/result" passHref>
+            <Button
+              variant="outlined"
+              size="large"
+              color="primary"
+              className="w-full py-3 my-3">
+              Analyse & Score
+            </Button>
+          </Link>
         </Grid>
       </Grid>
     </div>
