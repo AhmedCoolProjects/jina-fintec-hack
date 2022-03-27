@@ -1,6 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,6 +14,9 @@ import {
   Area,
   ComposedChart,
   Bar,
+  PieChart,
+  Pie,
+  Sector,
 } from "recharts";
 
 const data1 = [
@@ -60,8 +64,99 @@ const data2 = [
     CAF: 2001000,
   },
 ];
+const data5 = [
+  { name: "Pondé = 1", name_: "+5", value: 200, name_2: "+" },
+  { name: "Pondé = 0.8", name_: "+2.2", value: 200, name_2: "+5" },
+  { name: "Pondé = 0.6", name_: "+0.3", value: 200, name_2: "+2.2" },
+  { name: "Pondé = 0.4", name_: "-1.8", value: 200, name_2: "+1" },
+  { name: "Pondé = 0.2", name_: "-4.9", value: 200, name_2: "-2.5" },
+  { name: "Pondé = 0", name_: "-", value: 200, name_2: "-4.8" },
+];
+
+const renderActiveShape = (props: any) => {
+  const RADIAN = Math.PI / 180;
+  const {
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    startAngle,
+    endAngle,
+    fill,
+    payload,
+    percent,
+    value,
+    name_,
+    name_2,
+  } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? "start" : "end";
+
+  return (
+    <g>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+        {payload.name}
+      </text>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      />
+      <path
+        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+        stroke={fill}
+        fill="none"
+      />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        textAnchor={textAnchor}
+        fill="#333">{`Progréssion`}</text>
+      <text
+        x={ex + (cos >= 0 ? 1 : -1) * 12}
+        y={ey}
+        dy={18}
+        textAnchor={textAnchor}
+        fill="#999">
+        {`[${name_}%, ${name_2}]`}
+      </text>
+    </g>
+  );
+};
 
 const HomeResult: NextPage = () => {
+  const [state, setState] = useState({
+    activeIndex: 0,
+  });
+
+  const onPieEnter = (_, index) => {
+    setState({
+      activeIndex: index,
+    });
+  };
+
   return (
     <div className="py-5">
       <Head>
@@ -181,21 +276,28 @@ const HomeResult: NextPage = () => {
           </div>
           {/* secteur d'activité */}
           <h1 className="font-semibold text-red-700 text-3xl mb-3 mt-10 text-center">
-            Suggestions
+            Based Functions
           </h1>
           <div>
-            <ul className="list-disc">
-              <li className="list-item">
-                <h1 className="text-center text-xl my-3">
-                  Prévision de l&apos;année{" "}
-                  <span className="text-xl font-semibold text-red-700">
-                    N+1
-                  </span>{" "}
-                  basé sur le contexte actuel: <br />
-                  <h1 className="text-xl font-semibold text-green-700">
-                    92.03%
-                  </h1>
+            <ul>
+              <li className="flex flex-col items-center justify-center">
+                <h1 className="text-2xl font-semibold mt-3 text-center">
+                  Pondération du CA
                 </h1>
+                <PieChart width={450} height={450}>
+                  <Pie
+                    activeIndex={state?.activeIndex}
+                    activeShape={renderActiveShape}
+                    data={data5}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    fill="#8884d8"
+                    dataKey="value"
+                    onMouseEnter={onPieEnter}
+                  />
+                </PieChart>
               </li>
             </ul>
           </div>
