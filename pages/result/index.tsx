@@ -54,10 +54,11 @@ const HomeResult: NextPage = () => {
             Statistiques
           </h1>
           {/* CA */}
-          <div>
+          <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl text-center my-3">CA Progression</h1>
+
             <LineChart
-              width={500}
+              width={450}
               height={300}
               data={data1}
               margin={{
@@ -76,10 +77,11 @@ const HomeResult: NextPage = () => {
             </LineChart>
           </div>
           {/* CAF */}
-          <div>
+          <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl text-center my-3">CAF Progression</h1>
+
             <LineChart
-              width={500}
+              width={450}
               height={300}
               data={data2}
               margin={{
@@ -122,7 +124,7 @@ const HomeResult: NextPage = () => {
               {" "}
               Risks Score: <span className="text-green-700">88.25%</span>
             </h1>
-            <h1 className="text-xl mb-2 mt-5 text-center">
+            <h1 className="text-xl mb-2 mt-6 text-center">
               {" "}
               Final Score: <span className="text-green-700">90.2%</span>
             </h1>
