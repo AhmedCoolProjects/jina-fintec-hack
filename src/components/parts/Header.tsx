@@ -3,35 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { IMAGES } from "../../constants";
 import { BsSun, BsMoonStars } from "react-icons/bs";
-import {
-  changeModeAction,
-  loginAction,
-  useAppDispatch,
-  useAppSelector,
-} from "../../store";
-import { Auth, LogoutDialog } from "..";
-import { Login, Register, ResetPassword } from "./Auth";
 import { useState } from "react";
 
 export function Header() {
-  // for theming
-  const dispatch = useAppDispatch();
-  const isDark = useAppSelector((state) => state.mode.isDark);
-  const toggleTheme = () => {
-    dispatch(changeModeAction());
-    localStorage.setItem("isDark", `${!isDark}`);
-  };
-  // for the auth dialog
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  // for the redux user
-  const user = useAppSelector((state) => state.user);
   return (
     <>
       <Paper className="w-full z-10 p-3 sticky top-0 items-center justify-between flex flex-row">
@@ -59,19 +33,6 @@ export function Header() {
           </IconButton>
         </div>
       </Paper>
-      <Auth
-        loginButtonText="Login"
-        loginChildren={<Login />}
-        open={open}
-        onClose={handleClose}
-        loginTitle="Login"
-        registerButtonText="Register"
-        registerChildren={<Register />}
-        registerTitle="Register"
-        resetPasswordButtonText="Reset Password"
-        resetPasswordChildren={<ResetPassword />}
-        resetPasswordTitle="Reset Password"
-      />
     </>
   );
 }
