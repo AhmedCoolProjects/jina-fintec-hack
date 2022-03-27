@@ -69,83 +69,85 @@ const HomeResult: NextPage = () => {
       </Head>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={6}>
-          {/* ratio */}
-          <h1 className="font-semibold text-blue-700 text-3xl my-3 text-center">
-            Statistiques
-          </h1>
-          {/* CA */}
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl text-center my-3">CA Progression</h1>
+          <div className="w-full sm:max-h-screen sm:overflow-y-scroll ">
+            {/* ratio */}
+            <h1 className="font-semibold text-blue-700 text-3xl my-3 text-center">
+              Statistiques
+            </h1>
+            {/* CA */}
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl text-center my-3">CA Progression</h1>
 
-            <LineChart
-              width={450}
-              height={300}
-              data={data1}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
+              <LineChart
+                width={450}
+                height={300}
+                data={data1}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
 
-              <Line type="monotone" dataKey="CA" stroke="#82ca9d" />
-            </LineChart>
-          </div>
-          {/* CAF */}
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl text-center my-3">CAF Progression</h1>
-            <AreaChart
-              width={450}
-              height={300}
-              data={data2}
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="CAF"
-                stroke="#8884d8"
-                fill="#8884d8"
-              />
-            </AreaChart>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl text-center my-3">Impayés</h1>
-            <ComposedChart
-              width={450}
-              height={400}
-              data={data3}
-              margin={{
-                top: 10,
-                right: 30,
-                bottom: 0,
-                left: 0,
-              }}>
-              <CartesianGrid stroke="#f5f5f5" />
-              <XAxis dataKey="name" scale="band" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="Impayés" barSize={20} fill="#413ea0" />
-              <Line
-                type="monotone"
-                dataKey="Impayés_pro"
-                name="Impayés Progression"
-                stroke="#ff7300"
-              />
-            </ComposedChart>
+                <Line type="monotone" dataKey="CA" stroke="#82ca9d" />
+              </LineChart>
+            </div>
+            {/* CAF */}
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl text-center my-3">CAF Progression</h1>
+              <AreaChart
+                width={450}
+                height={300}
+                data={data2}
+                margin={{
+                  top: 10,
+                  right: 30,
+                  left: 0,
+                  bottom: 0,
+                }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Area
+                  type="monotone"
+                  dataKey="CAF"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                />
+              </AreaChart>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl text-center my-3">Impayés</h1>
+              <ComposedChart
+                width={450}
+                height={400}
+                data={data3}
+                margin={{
+                  top: 10,
+                  right: 30,
+                  bottom: 0,
+                  left: 0,
+                }}>
+                <CartesianGrid stroke="#f5f5f5" />
+                <XAxis dataKey="name" scale="band" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Impayés" barSize={20} fill="#413ea0" />
+                <Line
+                  type="monotone"
+                  dataKey="Impayés_pro"
+                  name="Impayés Progression"
+                  stroke="#ff7300"
+                />
+              </ComposedChart>
+            </div>
           </div>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
