@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { IMAGES } from "../../constants";
 import { BsSun, BsMoonStars } from "react-icons/bs";
-import { useState } from "react";
 
 export function Header() {
   return (
@@ -17,21 +16,7 @@ export function Header() {
             <h1 className="text-xl sm:text-2xl font-bold">SCORE LAB</h1>
           </div>
         </Link>
-        <div className="flex flex-row items-center space-x-2">
-          {/* <Link href="/about" passHref>
-            <Button>About</Button>
-          </Link> */}
-          {user.email ? (
-            <Link href="/profile" passHref>
-              <Button>Profile</Button>
-            </Link>
-          ) : (
-            <Button onClick={handleClickOpen}>Login</Button>
-          )}
-          <IconButton onClick={toggleTheme}>
-            {isDark ? <BsSun color="yellow" /> : <BsMoonStars color="purple" />}
-          </IconButton>
-        </div>
+        <div className="flex flex-row items-center space-x-2"></div>
       </Paper>
     </>
   );
