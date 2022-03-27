@@ -9,7 +9,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
+  AreaChart,
+  Area,
 } from "recharts";
 
 const data1 = [
@@ -79,25 +80,27 @@ const HomeResult: NextPage = () => {
           {/* CAF */}
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl text-center my-3">CAF Progression</h1>
-
-            <LineChart
+            <AreaChart
               width={450}
               height={300}
               data={data2}
               margin={{
-                top: 5,
+                top: 10,
                 right: 30,
-                left: 20,
-                bottom: 5,
+                left: 0,
+                bottom: 0,
               }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Legend />
-
-              <Line type="monotone" dataKey="CAF" stroke="#82ca9d" />
-            </LineChart>
+              <Area
+                type="monotone"
+                dataKey="CAF"
+                stroke="#8884d8"
+                fill="#8884d8"
+              />
+            </AreaChart>
           </div>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
@@ -134,12 +137,20 @@ const HomeResult: NextPage = () => {
             Suggestions
           </h1>
           <div>
-            <h1 className="text-center text-xl my-3">
-              Prévision de l&apos;année{" "}
-              <span className="text-xl font-semibold text-red-700">N+1</span>{" "}
-              basé sur le contexte actuel: <br />
-              <h1 className="text-xl font-semibold text-green-700">92.03%</h1>
-            </h1>
+            <ul className="list-disc">
+              <li className="list-item">
+                <h1 className="text-center text-xl my-3">
+                  Prévision de l&apos;année{" "}
+                  <span className="text-xl font-semibold text-red-700">
+                    N+1
+                  </span>{" "}
+                  basé sur le contexte actuel: <br />
+                  <h1 className="text-xl font-semibold text-green-700">
+                    92.03%
+                  </h1>
+                </h1>
+              </li>
+            </ul>
           </div>
         </Grid>
       </Grid>

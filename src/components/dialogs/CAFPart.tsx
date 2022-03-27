@@ -23,7 +23,7 @@ export function CAFPart() {
         type="number"
         value={caList[1]}
         onChange={(e) =>
-          setCaList([parseInt(e.target.value), caList[1], caList[2]])
+          setCaList([caList[0], parseInt(e.target.value), caList[2]])
         }
         label="CAF (N-1)"
       />
@@ -32,7 +32,7 @@ export function CAFPart() {
         type="number"
         value={caList[2]}
         onChange={(e) =>
-          setCaList([parseInt(e.target.value), caList[1], caList[2]])
+          setCaList([caList[0], caList[1], parseInt(e.target.value)])
         }
         label="CAF (N)"
       />
