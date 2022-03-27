@@ -11,6 +11,8 @@ import {
   Legend,
   AreaChart,
   Area,
+  ComposedChart,
+  Bar,
 } from "recharts";
 
 const data1 = [
@@ -25,6 +27,23 @@ const data1 = [
   {
     name: "N",
     CA: 4002000,
+  },
+];
+const data3 = [
+  {
+    name: "N-2",
+    Impayés: 5,
+    Impayés_pro: 2,
+  },
+  {
+    name: "N-1",
+    Impayés: 3,
+    Impayés_pro: 4,
+  },
+  {
+    name: "N",
+    Impayés: 6,
+    Impayés_pro: 7,
   },
 ];
 const data2 = [
@@ -102,6 +121,32 @@ const HomeResult: NextPage = () => {
               />
             </AreaChart>
           </div>
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-2xl text-center my-3">Impayés</h1>
+            <ComposedChart
+              width={450}
+              height={400}
+              data={data3}
+              margin={{
+                top: 10,
+                right: 30,
+                bottom: 0,
+                left: 0,
+              }}>
+              <CartesianGrid stroke="#f5f5f5" />
+              <XAxis dataKey="name" scale="band" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Impayés" barSize={20} fill="#413ea0" />
+              <Line
+                type="monotone"
+                dataKey="Impayés_pro"
+                name="Impayés Progression"
+                stroke="#ff7300"
+              />
+            </ComposedChart>
+          </div>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {/* risques */}
@@ -117,7 +162,7 @@ const HomeResult: NextPage = () => {
             <h1 className="text-xl my-2 text-center">
               {" "}
               CAF Progression Score:{" "}
-              <span className="text-green-700">69.5%</span>{" "}
+              <span className="text-green-700">89.5%</span>{" "}
             </h1>
             <h1 className="text-xl my-2 text-center">
               {" "}
